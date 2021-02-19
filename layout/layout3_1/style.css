@@ -1,0 +1,71 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+body{
+    background: #8a5d96;
+}
+#wrap{
+    width:1200px;
+    margin: 0 auto;
+}
+
+header{
+    width: 100%;
+    height: 150px;
+    background: #9775cd;
+}
+
+aside{
+    float:left;
+    width: 30%;
+    height: 700px;
+    background: #7e57c2;
+}
+
+section{
+    float:left;
+    width: 70%;
+    height: 700px;
+    background: #673ab7;
+}
+
+footer{
+    clear:both;
+    float:left;
+    width: 100%;
+    height: 150px;
+    background: #9775cd;
+}
+
+/* 화면 너비 조절 */
+@media (max-width:1220px){
+    #wrap{
+        width:95%;
+    }
+}
+
+@media (max-width:768px){
+    #wrap{
+        width:100%;
+    }
+}
+
+@media (max-width:480px){
+    #wrap{
+        width:100%;
+    }
+    header{
+        height: 300px;
+    }
+    aside{
+        float:none;
+        width: 100%;
+        height: 300px;
+    }
+    section{
+        float:none;
+        width: 100%;
+        height: 300px;
+    }
+}

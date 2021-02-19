@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+    function checkLoginStatus(){
+        var loginBtn = document.querySelector('#loginBtn');
+        var nameTxt = document.querySelector('#name');
+        
+        if(gauth.isSignedIn.get())
+        {
+            console.log('logined');
+            loginBtn.value = 'Logout';
+            var profile = gauth.currentUser.get().getBasicProfile();
+            console.log(profile.getName());
+            nameTxt.innerHTML ='Welcome <strong>'+profile.getName()+'</strong>';
+        } 
+        else 
+        {
+            console.log('logouted');
+            loginBtn.value = 'Login';
+            nameTxt.innerHTML ='';
+        }
+    }
+    function init(){
+      console.log('init');
+      gapi.load('auth2', function() {
+        console.log('auth2');
+        window.gauth = gapi.auth2.init({
+          client_id:'355347563908-ltpvkan3ks4gda5jrgbr0i9s2qn8do29.apps.googleusercontent.com'
+        })
+        gauth.then(function(){
+          console.log('googleAuth success');
+          checkLoginStatus();
+        }, function(){
+          console.log('googleAuth fail');
+        });
+      });
+    }
+    </script>
+
+
+</head>
+<body>
+    <style>
+        #name{
+            color:blue;
+        }
+    </style>
+    <span id="name"></span>
+    <input type="button" id="loginBtn" value="checking..." onclick="
+    if(this.value === 'Login'){
+      gauth.signIn().then(function(){
+        console.log('gauth.signIn()');
+        checkLoginStatus();
+      });
+    } else {
+      gauth.signOut().then(function(){
+        console.log('gauth.signOut()');
+        checkLoginStatus();
+      });
+    }
+  ">
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias ex enim veritatis rem natus libero, deserunt dicta harum? Perferendis iure a laboriosam asperiores aliquid. Voluptatibus magnam iusto reiciendis quos totam?
+
+    <script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
+</body>
+</html>
